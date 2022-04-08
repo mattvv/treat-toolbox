@@ -109,7 +109,7 @@ export const ArtworkForm: React.FC<Props> = ({
     } else {
       const traits = await Traits.all(projectId, collection.id);
       const filteredTraits = traits.filter((trait) => {
-        return trait.traitSetIds.includes(traitSetId);
+        return trait.traitSetIds?.includes(traitSetId);
       });
       setTraits(filteredTraits);
     }
