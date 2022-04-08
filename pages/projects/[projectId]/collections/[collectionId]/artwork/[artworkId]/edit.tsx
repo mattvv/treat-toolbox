@@ -94,7 +94,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
       const traits = await Traits.all(projectId, collectionId, "name");
       if (traitSetId) {
         initialTraits = traits.filter((trait) => {
-          return trait.traitSetIds.includes(traitSetId);
+          return trait.traitSetIds?.includes(traitSetId);
         });
       } else {
         initialTraits = traits;

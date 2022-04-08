@@ -315,7 +315,7 @@ export default function IndexPage(props: Props) {
                                     className="text-sm text-gray-500 overflow-ellipsis"
                                     title={traitSets
                                       .filter((traitSet) => {
-                                        return trait?.traitSetIds.includes(
+                                        return trait?.traitSetIds?.includes(
                                           traitSet.id
                                         );
                                       })

@@ -101,7 +101,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
         for (let i = 0; i < traitSets.length; i++) {
           const traitSet = traitSets[i];
           const traitSetTraits = traits.filter((trait) => {
-            return trait.traitSetIds.includes(traitSet.id);
+            return trait.traitSetIds?.includes(traitSet.id);
           });
           traitsDict[traitSet.id] = traitSetTraits;
         }

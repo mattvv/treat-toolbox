@@ -228,7 +228,7 @@ export default function IndexPage(props: Props) {
       trait = traits.find((iterTrait) => {
         return (
           iterTrait.name.toLowerCase() == traitName &&
-          (!traitSet || iterTrait.traitSetIds.includes(traitSet.id))
+          (!traitSet || iterTrait.traitSetIds?.includes(traitSet.id))
         );
       });
 
@@ -687,7 +687,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
           for (let j = 0; j < traits.length; j++) {
             const trait = traits[j];
 
-            if (trait.traitSetIds.includes(traitSet.id)) {
+            if (trait.traitSetIds?.includes(traitSet.id)) {
               includedTraits.push(trait);
             }
           }
