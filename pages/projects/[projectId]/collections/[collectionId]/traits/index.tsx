@@ -29,6 +29,8 @@ interface Props {
 }
 
 export default function IndexPage(props: Props) {
+  console.log("PROPS ARE", props);
+  console.trace();
   const project = props.project;
   const projects = props.projects;
   const collection = props.collection;

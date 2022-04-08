@@ -72,11 +72,11 @@ interface Props {
 export default function DropsSubnav(props: Props) {
   const { project, collection, section } = props;
 
-  const collectionType = collection.type ?? CollectionType.Generative;
+  const collectionType = collection?.type ?? CollectionType.Generative;
 
   return (
     <>
-      <Header title={project.name + ": " + collection.name} />
+      <Header title={project?.name + ": " + collection?.name} />
       <section>
         <div>
           <div className="sm:hidden">
@@ -90,7 +90,7 @@ export default function DropsSubnav(props: Props) {
               defaultValue={tabs.find((tab) => tab.id == section)?.name}
             >
               {tabs.map((tab) => {
-                tab.validTypes.includes(collection.type) ? (
+                tab.validTypes.includes(collection?.type) ? (
                   <option key={tab.name}>{tab.name}</option>
                 ) : (
                   ""
@@ -111,8 +111,8 @@ export default function DropsSubnav(props: Props) {
                           "/projects/[projectId]/collections/[collectionId]" +
                           tabPath,
                         query: {
-                          projectId: project.id,
-                          collectionId: collection.id,
+                          projectId: project?.id,
+                          collectionId: collection?.id,
                         },
                       }}
                     >

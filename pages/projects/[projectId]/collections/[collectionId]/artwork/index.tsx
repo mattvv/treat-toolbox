@@ -38,6 +38,8 @@ interface Props {
 }
 
 export default function IndexPage(props: Props) {
+  console.log("PROPS ARE", props);
+  console.trace();
   const project = props.project;
   const projects = props.projects;
   const collection = props.collection;
@@ -258,7 +260,7 @@ export default function IndexPage(props: Props) {
             },
             imageLayer.id,
             project.id,
-            collection.id,
+            collection?.id,
             batch
           );
         }
@@ -405,7 +407,7 @@ export default function IndexPage(props: Props) {
                   </button>
                 </Link>
               </span>
-              {collection.type == CollectionType.Prerendered ? (
+              {collection?.type == CollectionType.Prerendered ? (
                 ""
               ) : (
                 <span>
@@ -456,7 +458,7 @@ export default function IndexPage(props: Props) {
                 Search
               </button>
 
-              {collection.type == CollectionType.Prerendered ? (
+              {collection?.type == CollectionType.Prerendered ? (
                 ""
               ) : (
                 <button
@@ -668,6 +670,8 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     const projectId = context.query.projectId?.toString();
     const collectionId = context.query.collectionId?.toString();
 
+    console.log("got serverSideId", projectId);
+
     if (projectId && collectionId) {
       const projects = await Projects.all();
       const collection = await Collections.withId(collectionId, projectId);
@@ -687,7 +691,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
           for (let j = 0; j < traits.length; j++) {
             const trait = traits[j];
 
-            if (trait.traitSetIds?.includes(traitSet.id)) {
+            if ((trait.traitSetIds || []).includes(traitSet.id)) {
               includedTraits.push(trait);
             }
           }
