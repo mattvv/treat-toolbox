@@ -46,7 +46,7 @@ export default function CreatePage(props: Props) {
             <div className="mt-5 md:mt-0 md:col-span-2">
               <ConflictForm
                 projectId={projectId}
-                collectionId={collection.id}
+                collectionId={collection?.id}
                 traitSets={traitSets}
                 traits={traits}
                 traitsDict={traitsDict}
@@ -79,8 +79,8 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
       );
 
       const traitsDict: { [traitSetId: string]: Trait[] } = {};
-      if (traitSets.length > 0) {
-        for (let i = 0; i < traitSets.length; i++) {
+      if ((traitSets || []).length > 0) {
+        for (let i = 0; i < (traitSets || []).length; i++) {
           const traitSet = traitSets[i];
           const traitSetTraits = traits.filter((trait) => {
             return trait.traitSetIds?.includes(traitSet.id);

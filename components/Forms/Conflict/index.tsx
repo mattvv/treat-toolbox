@@ -36,7 +36,7 @@ export const ConflictForm: React.FC<Props> = ({
   const schema = yup
     .object({
       traitSetId:
-        traitSets.length > 0
+        (traitSets || []).length > 0
           ? yup
               .string()
               .notOneOf(["-1"], "This field is required")
@@ -149,7 +149,7 @@ export const ConflictForm: React.FC<Props> = ({
       <div className="px-4 py-5 bg-white space-y-6 sm:p-6">
         <div className="shadow sm:rounded-md sm:overflow-hidden">
           <div className="px-4 py-5 bg-white space-y-6 sm:p-6">
-            {traitSets.length == 0 ? (
+            {(traitSets || []).length == 0 ? (
               ""
             ) : (
               <div>
@@ -174,7 +174,7 @@ export const ConflictForm: React.FC<Props> = ({
                   }}
                 >
                   <option value="-1">
-                    {traitSets.length == 0 ? "Default" : "Unassigned"}
+                    {(traitSets || []).length == 0 ? "Default" : "Unassigned"}
                   </option>
                   {traitSets.map((traitSet) => (
                     <option key={traitSet.id} value={traitSet.id}>
@@ -213,7 +213,7 @@ export const ConflictForm: React.FC<Props> = ({
                 }}
               >
                 <option value="-1">Unassigned</option>
-                {(traitSetId ? traitsDict[traitSetId] ?? [] : traits).map(
+                {(traitSetId ? traitsDict[traitSetId] ?? [] : traits || []).map(
                   (trait) => (
                     <option key={trait.id} value={trait.id}>
                       {trait.name}
@@ -287,7 +287,7 @@ export const ConflictForm: React.FC<Props> = ({
                 }}
               >
                 <option value="-1">Unassigned</option>
-                {(traitSetId ? traitsDict[traitSetId] ?? [] : traits).map(
+                {(traitSetId ? traitsDict[traitSetId] ?? [] : traits || []).map(
                   (trait) => (
                     <option key={trait.id} value={trait.id}>
                       {trait.name}
